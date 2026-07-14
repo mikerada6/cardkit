@@ -33,7 +33,7 @@ transitively.
 |---|---|---|
 | Build (compile + package both modules) | `./mvnw -q package` | Produces `cardkit-core` and `cardkit-games` JARs. |
 | Fast test lane (default) | `./mvnw -q verify` | Unit tests, fully **offline**, no Docker. The default reactor lane. |
-| Integration lane | `./mvnw -q verify -P it` | Cross-module acceptance tests — still offline (the library owns no I/O). Green-and-empty until later stories populate it. The `it` profile is wired in story 0002. |
+| Integration lane | `./mvnw -q verify -P it` | Cross-module acceptance tests — still offline (the library owns no I/O). Green-and-empty until stories 0009 and 0017 populate it. |
 | Clean | `./mvnw -q clean` | Removes `target/`. |
 
 There is no `main` entry point and no executable/fat JAR — the modules publish
