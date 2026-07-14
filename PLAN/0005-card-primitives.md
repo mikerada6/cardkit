@@ -25,18 +25,18 @@ implementing any evaluation here. Lands in `core.card`.
 - `Deck`/`Shoe` (story 0006) and `Hand` (story 0007).
 
 ## Acceptance Criteria
-- [ ] `Suit` and `Rank` enums and the `Card` record exist in `core.card`;
+- [x] `Suit` and `Rank` enums and the `Card` record exist in `core.card`;
       `Card` is an immutable value object equal-by-value (two aces of spades are
       equal) with no notion of source deck.
-- [ ] `Rank` carries strength data usable in both ace-high and ace-low contexts;
+- [x] `Rank` carries strength data usable in both ace-high and ace-low contexts;
       it does not hard-code a single ace-high natural order that the low ranker
       would have to fight (verified by a test that reads strength in both senses).
-- [ ] The 52 distinct `(Rank, Suit)` combinations are enumerable for `Deck`
+- [x] The 52 distinct `(Rank, Suit)` combinations are enumerable for `Deck`
       construction (a helper or the enum values suffice).
-- [ ] `./mvnw verify` exits 0 (fast/offline lane — unit + ArchUnit, no Docker).
-- [ ] Tests added/updated (unit-first): equality/immutability, all 4 suits and
+- [x] `./mvnw verify` exits 0 (fast/offline lane — unit + ArchUnit, no Docker).
+- [x] Tests added/updated (unit-first): equality/immutability, all 4 suits and
       13 ranks present, strength ordering in both contexts.
-- [ ] **Best-in-class Observability (library-appropriate):** pure value objects;
+- [x] **Best-in-class Observability (library-appropriate):** pure value objects;
       no loggers needed. Metrics/tracing **N/A per ADR-0001**.
 
 ## Verification commands

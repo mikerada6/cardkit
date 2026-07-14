@@ -3,6 +3,9 @@ package org.rezatron.cardkit.core.util;
 import java.util.Collection;
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Lightweight precondition helpers that enforce the CardKit null-policy at public API boundaries.
  *
@@ -26,10 +29,18 @@ import java.util.Objects;
  *   }
  * }</pre>
  *
+ * <h2>Observability</h2>
+ * <p>A single DEBUG line is emitted on the <em>rejection</em> path only, naming the failed
+ * parameter, before the corresponding exception is thrown. The happy path logs nothing, so
+ * the helper stays silent and allocation-free during normal operation
+ * ({@code docs/conventions.md §Logging Conventions}).</p>
+ *
  * <p>This class is intentionally small — it delegates to {@link Objects#requireNonNull} and
  * provides consistent, readable error messages. Do not add domain logic here.</p>
  */
 public final class Require {
+
+    private static final Logger log = LoggerFactory.getLogger(Require.class);
 
     private Require() {
         // utility class — no instances
@@ -45,6 +56,9 @@ public final class Require {
      * @throws NullPointerException if {@code value} is {@code null}
      */
     public static <T> T nonNull(T value, String paramName) {
+        if (value == null) {
+            log.debug("Precondition failed: parameter '{}' must not be null", paramName);
+        }
         return Objects.requireNonNull(value, paramName + " must not be null");
     }
 
@@ -59,10 +73,14 @@ public final class Require {
      * @throws IllegalArgumentException if any element of {@code collection} is {@code null}
      */
     public static <T extends Collection<?>> T nonNullElements(T collection, String paramName) {
+        if (collection == null) {
+            log.debug("Precondition failed: collection '{}' must not be null", paramName);
+        }
         Objects.requireNonNull(collection, paramName + " must not be null");
         int index = 0;
         for (Object element : collection) {
             if (element == null) {
+                log.debug("Precondition failed: element '{}[{}]' must not be null", paramName, index);
                 throw new IllegalArgumentException(
                         paramName + "[" + index + "] must not be null");
             }
