@@ -1,3 +1,5 @@
 story,size,build_tokens,build_min,review_tokens,review_min,land_tokens,land_min,reopen_rounds,merged_utc
 0001,M,67351,6.54,53711,2.84,36512,3.02,0,2026-07-14T15:49:53Z
 0002,S,18420,2.10,0,0,0,0,1,2026-07-14T17:30:00Z
+0003,S,0,0,0,0,0,0,0,2026-07-14T00:00:00Z
+0004,S,0,0,0,0,0,0,0,2026-07-14T00:00:00Z

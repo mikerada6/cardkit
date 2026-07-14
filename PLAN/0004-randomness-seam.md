@@ -1,6 +1,6 @@
 # 0004 — Randomness seam
 
-**Status:** TODO   _(allowed: TODO | IN PROGRESS | DONE | BLOCKED | STALE)_
+**Status:** DONE   _(allowed: TODO | IN PROGRESS | DONE | BLOCKED | STALE)_
 **Size:** S
 **Context budget:** <30%
 **Depends on:** 0001, 0003
@@ -27,17 +27,17 @@ Fisher–Yates swap). The actual Fisher–Yates shuffle lives with `Deck`/`Shoe`
 - Any card types (story 0005).
 
 ## Acceptance Criteria
-- [ ] `RandomSource` interface plus `SecureRandomSource` and
+- [x] `RandomSource` interface plus `SecureRandomSource` and
       `SeededRandomSource` implementations exist in `core.random`.
-- [ ] `SecureRandomSource` is backed by `java.security.SecureRandom`; no use of
+- [x] `SecureRandomSource` is backed by `java.security.SecureRandom`; no use of
       `java.util.Random` / `Math.random()` / `Collections.shuffle` anywhere.
-- [ ] `SeededRandomSource` with a fixed seed produces a reproducible sequence
+- [x] `SeededRandomSource` with a fixed seed produces a reproducible sequence
       (asserted deterministically in tests).
-- [ ] An ArchUnit or test guard flags any reference to the prohibited RNG APIs
+- [x] An ArchUnit or test guard flags any reference to the prohibited RNG APIs
       in `main` sources (may be added here or extend the 0002 scaffold).
-- [ ] `./mvnw verify` exits 0 (fast/offline lane — unit + ArchUnit, no Docker).
-- [ ] Tests added/updated (unit-first; determinism test uses `SeededRandomSource`).
-- [ ] **Best-in-class Observability (library-appropriate):**
+- [x] `./mvnw verify` exits 0 (fast/offline lane — unit + ArchUnit, no Docker).
+- [x] Tests added/updated (unit-first; determinism test uses `SeededRandomSource`).
+- [x] **Best-in-class Observability (library-appropriate):**
       - SLF4J class loggers where useful (DEBUG/TRACE only; quiet by default).
       - Metrics/tracing: **N/A per ADR-0001**.
 

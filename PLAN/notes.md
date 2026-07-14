@@ -5,7 +5,7 @@ any story; append at the moment of discovery. Point at artifacts by path —
 never paste them. This file is coordination, not design truth: `docs/` owns
 design, ADRs own decisions, story files own scope._
 _Created: 2026-07-14T00:00:00Z_
-_Last updated: 2026-07-14T17:30:00Z (story 0002 — CI lanes wired; no active notes)_
+_Last updated: 2026-07-14T00:00:00Z (story 0004 — randomness seam done; no active notes)_
 
 ## Rules
 1. Read `## Active` in full before planning a story. Never read
