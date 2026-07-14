@@ -71,3 +71,8 @@ RandomSource, draw state) and Shoe.ofDecks(n, rng) (N x 52, up to N
 duplicates allowed), with exhausted-source and invariant checks, per
 docs/data-model.md (Deck, Shoe, Invariants) and ADR-0003.
 ```
+
+## Review verdict
+| Round | Verdict | Commit reviewed | At (UTC) |
+|---|---|---|---|
+| 1 | APPROVED | c620da5dec5b7facc4bebf67591f8fe6bbca717e | 2026-07-14T21:22:35Z |
