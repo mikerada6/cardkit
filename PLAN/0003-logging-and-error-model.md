@@ -1,6 +1,6 @@
 # 0003 — Logging & error-model conventions
 
-**Status:** TODO   _(allowed: TODO | IN PROGRESS | DONE | BLOCKED | STALE)_
+**Status:** DONE   _(allowed: TODO | IN PROGRESS | DONE | BLOCKED | STALE)_
 **Size:** S
 **Context budget:** <30%
 **Depends on:** 0001
@@ -31,15 +31,15 @@ stories, not here.
 - Card/deck/hand types (stories 0005+).
 
 ## Acceptance Criteria
-- [ ] `core.error` exposes a small descriptive exception set for rule/
+- [x] `core.error` exposes a small descriptive exception set for rule/
       programming violations (unchecked), with a clear base type; no bare
       `RuntimeException` throwing intended for domain use.
-- [ ] Null policy is exercised by tests: `requireNonNull` rejects nulls at a
+- [x] Null policy is exercised by tests: `requireNonNull` rejects nulls at a
       representative boundary; a helper/pattern for it is available to feature stories.
-- [ ] Unit tests cover exception construction/messaging and the null-rejection helper.
-- [ ] `./mvnw verify` exits 0 (fast/offline lane — unit + ArchUnit, no Docker).
-- [ ] Tests added/updated (unit-first).
-- [ ] **Best-in-class Observability (library-appropriate):**
+- [x] Unit tests cover exception construction/messaging and the null-rejection helper.
+- [x] `./mvnw verify` exits 0 (fast/offline lane — unit + ArchUnit, no Docker).
+- [x] Tests added/updated (unit-first).
+- [x] **Best-in-class Observability (library-appropriate):**
       - Structured logging via SLF4J: one class-scoped logger per type
         (`LoggerFactory.getLogger(Xxx.class)`); levels per the global log-level
         table (this library stays at DEBUG/TRACE, no INFO chatter). No MDC/trace

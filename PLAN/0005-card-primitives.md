@@ -1,6 +1,6 @@
 # 0005 — Card primitives
 
-**Status:** TODO   _(allowed: TODO | IN PROGRESS | DONE | BLOCKED | STALE)_
+**Status:** DONE   _(allowed: TODO | IN PROGRESS | DONE | BLOCKED | STALE)_
 **Size:** S
 **Context budget:** <30%
 **Depends on:** 0003

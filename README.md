@@ -33,7 +33,7 @@ transitively.
 |---|---|---|
 | Build (compile + package both modules) | `./mvnw -q package` | Produces `cardkit-core` and `cardkit-games` JARs. |
 | Fast test lane (default) | `./mvnw -q verify` | Unit tests, fully **offline**, no Docker. The default reactor lane. |
-| Integration lane | `./mvnw -q verify -P it` | Cross-module acceptance tests — still offline (the library owns no I/O). Green-and-empty until later stories populate it. The `it` profile is wired in story 0002. |
+| Integration lane | `./mvnw -q verify -P it` | Cross-module acceptance tests — still offline (the library owns no I/O). Green-and-empty until stories 0009 and 0017 populate it. |
 | Clean | `./mvnw -q clean` | Removes `target/`. |
 
 There is no `main` entry point and no executable/fat JAR — the modules publish
@@ -46,7 +46,8 @@ CardKit is a library, not a service, so it imposes **no observability backend**:
 - **Logging:** through the **SLF4J API** only. The library **binds no logging
   implementation** — the consuming application supplies one. It stays quiet by
   default (internal detail at DEBUG/TRACE; no INFO during normal operation).
-  Full logging conventions land in story 0003.
+  Logging conventions and the `core.error` exception hierarchy are implemented
+  in story 0003 (`core.error`, `core.util.Require`).
 - **Metrics / tracing:** Micrometer, Prometheus, and OpenTelemetry are **N/A
   per [ADR-0001](docs/adr/0001-standalone-java-library-not-spring-service.md)** —
   a consuming service that wants them wires them at its own boundary.
