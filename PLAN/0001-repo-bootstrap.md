@@ -1,6 +1,6 @@
 # 0001 — Repo bootstrap
 
-**Status:** TODO   _(allowed: TODO | IN PROGRESS | DONE | BLOCKED | STALE)_
+**Status:** DONE   _(allowed: TODO | IN PROGRESS | DONE | BLOCKED | STALE)_
 **Size:** M
 **Context budget:** 30-60%
 **Depends on:** none
@@ -29,18 +29,18 @@ and module map, and initialise a gitflow `develop` branch. Modules may be empty
 - Any `docker-compose.yml`, persistence, or web layer — N/A per ADR-0001.
 
 ## Acceptance Criteria
-- [ ] Parent `pom.xml` has `packaging=pom` and `<modules>core</modules>` +
+- [x] Parent `pom.xml` has `packaging=pom` and `<modules>core</modules>` +
       `<modules>games</modules>`; `games` declares a dependency on `core`.
-- [ ] Java release set to 25; `slf4j-api` is the sole runtime dependency;
+- [x] Java release set to 25; `slf4j-api` is the sole runtime dependency;
       JUnit 5 + AssertJ managed as test-scoped.
-- [ ] Maven wrapper committed; `./mvnw -v` reports the pinned Maven version.
-- [ ] README documents the command matrix (build, fast test, integration test)
+- [x] Maven wrapper committed; `./mvnw -v` reports the pinned Maven version.
+- [x] README documents the command matrix (build, fast test, integration test)
       and the `core` vs `games` module map.
-- [ ] `develop` branch exists (gitflow).
-- [ ] `./mvnw verify` exits 0 (fast/offline lane — no Docker, empty modules OK).
-- [ ] Tests added/updated (a trivial smoke test per module is acceptable to
+- [x] `develop` branch exists (gitflow).
+- [x] `./mvnw verify` exits 0 (fast/offline lane — no Docker, empty modules OK).
+- [x] Tests added/updated (a trivial smoke test per module is acceptable to
       keep the reactor honest; unit-first).
-- [ ] **Best-in-class Observability (library-appropriate):** no business logic
+- [x] **Best-in-class Observability (library-appropriate):** no business logic
       yet, so no loggers/metrics required. Record in the README/POM comment that
       logging is SLF4J-facade-only with no bound implementation, and that
       Micrometer/Prometheus/OTel are **N/A per ADR-0001** (library imposes no
@@ -50,6 +50,18 @@ and module map, and initialise a gitflow `develop` branch. Modules may be empty
 ```bash
 ./mvnw -q verify > verify.log 2>&1 && tail -n5 verify.log || { cat verify.log; exit 1; }
 ```
+
+## Files touched
+- `pom.xml` — parent aggregator POM (packaging=pom), Java 25, dependencyManagement (slf4j-api, JUnit5, AssertJ), aggregates core+games.
+- `core/pom.xml` — cardkit-core module POM (packaging=jar).
+- `games/pom.xml` — cardkit-games module POM (packaging=jar), depends on core.
+- `core/src/main/java/org/rezatron/cardkit/core/package-info.java` — placeholder to keep the module non-empty and compiling.
+- `games/src/main/java/org/rezatron/cardkit/games/package-info.java` — placeholder to keep the module non-empty and compiling.
+- `core/src/test/java/org/rezatron/cardkit/core/CoreSmokeTest.java` — trivial smoke test keeping the reactor honest.
+- `games/src/test/java/org/rezatron/cardkit/games/GamesSmokeTest.java` — trivial smoke test keeping the reactor honest.
+- `README.md` — build/test command matrix, module map, observability/N-A note.
+- `mvnw`, `mvnw.cmd`, `.mvn/wrapper/maven-wrapper.properties` — Maven wrapper (pinned Maven version).
+- `.gitignore` — ignore `verify.log` produced by the verification command.
 
 ## Traceability
 - Docs implemented: `docs/architecture.md §Package & Maven Module Structure`,
@@ -66,3 +78,8 @@ Maven wrapper, README command matrix, and gitflow develop branch, per
 docs/architecture.md (Module Structure, Build & Packaging) and ADR-0001
 (standalone library, no Spring/Docker).
 ```
+
+## Review verdict
+| Round | Verdict | Commit reviewed | At (UTC) |
+|---|---|---|---|
+| 1 | APPROVED | bef72680f1548d8437a2d7afdd897bf10e9816e6 | 2026-07-14T15:47:18Z |

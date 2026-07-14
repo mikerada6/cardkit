@@ -13,7 +13,7 @@ proposed layout and [notes.md](notes.md) for the agent handover log.
 
 | # | Title | Status | Size | Depends on |
 |---|---|---|---|---|
-| 0001 | repo-bootstrap | TODO | M | none |
+| 0001 | repo-bootstrap | DONE | M | none |
 | 0002 | ci-lanes | TODO | S | 0001 |
 | 0003 | logging-and-error-model | TODO | S | 0001 |
 | 0004 | randomness-seam | TODO | S | 0001, 0003 |
