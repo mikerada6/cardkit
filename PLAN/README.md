@@ -1,7 +1,7 @@
 # PLAN
 
 _Generated: 2026-07-14T00:00:00Z_
-_Last updated: 2026-07-14T00:00:00Z — story 0004 DONE_
+_Last updated: 2026-07-14T00:00:00Z — story 0005 DONE_
 
 _Scope: MVP_
 
@@ -19,7 +19,7 @@ proposed layout and [notes.md](notes.md) for the agent handover log.
 | 0002 | ci-lanes | DONE | S | 0001 |
 | 0003 | logging-and-error-model | DONE | S | 0001 |
 | 0004 | randomness-seam | DONE | S | 0001, 0003 |
-| 0005 | card-primitives | TODO | S | 0003 |
+| 0005 | card-primitives | DONE | S | 0003 |
 | 0006 | deck-and-shoe | TODO | M | 0004, 0005 |
 | 0007 | hand | TODO | S | 0005 |
 | 0008 | participant-core | TODO | S | 0007 |
