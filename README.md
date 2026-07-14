@@ -46,7 +46,8 @@ CardKit is a library, not a service, so it imposes **no observability backend**:
 - **Logging:** through the **SLF4J API** only. The library **binds no logging
   implementation** — the consuming application supplies one. It stays quiet by
   default (internal detail at DEBUG/TRACE; no INFO during normal operation).
-  Full logging conventions land in story 0003.
+  Logging conventions and the `core.error` exception hierarchy are implemented
+  in story 0003 (`core.error`, `core.util.Require`).
 - **Metrics / tracing:** Micrometer, Prometheus, and OpenTelemetry are **N/A
   per [ADR-0001](docs/adr/0001-standalone-java-library-not-spring-service.md)** —
   a consuming service that wants them wires them at its own boundary.
