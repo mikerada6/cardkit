@@ -21,7 +21,7 @@ proposed layout and [notes.md](notes.md) for the agent handover log.
 | 0004 | randomness-seam | DONE | S | 0001, 0003 |
 | 0005 | card-primitives | DONE | S | 0003 |
 | 0006 | deck-and-shoe | DONE | M | 0004, 0005 |
-| 0007 | hand | TODO | S | 0005 |
+| 0007 | hand | DONE | S | 0005 |
 | 0008 | participant-core | TODO | S | 0007 |
 | 0009 | poker-hand-ranker | TODO | M | 0005, 0007, 0002 |
 | 0010 | poker-low-ranker | TODO | S | 0009 |
