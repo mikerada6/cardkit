@@ -1,7 +1,7 @@
 # PLAN
 
 _Generated: 2026-07-14T00:00:00Z_
-_Last updated: 2026-07-14T00:00:00Z — story 0006 DONE_
+_Last updated: 2026-07-14T00:00:00Z — story 0019 DONE_
 
 _Scope: MVP_
 
@@ -33,6 +33,7 @@ proposed layout and [notes.md](notes.md) for the agent handover log.
 | 0016 | ai-player-stub | TODO | S | 0008 |
 | 0017 | e2e-workflow-acceptance | TODO | M | 0013, 0015, 0016 |
 | 0018 | release-readiness | TODO | S | 0009, 0017 |
+| 0019 | require-rejection-logging | DONE | S | 0003 |
 
 ## Open questions (surfaced during seed; not blocking)
 

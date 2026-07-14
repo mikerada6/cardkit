@@ -5,7 +5,7 @@ any story; append at the moment of discovery. Point at artifacts by path —
 never paste them. This file is coordination, not design truth: `docs/` owns
 design, ADRs own decisions, story files own scope._
 _Created: 2026-07-14T00:00:00Z_
-_Last updated: 2026-07-14T00:00:00Z (story 0004 — randomness seam done; no active notes)_
+_Last updated: 2026-07-14T00:00:00Z (story 0019 — added N-001: ArchUnit version ↔ bytecode version coupling)_
 
 ## Rules
 1. Read `## Active` in full before planning a story. Never read
@@ -22,7 +22,22 @@ _Last updated: 2026-07-14T00:00:00Z (story 0004 — randomness seam done; no act
 
 ## Active
 
-_(none)_
+### N-001 — ArchUnit version is coupled to the compiled bytecode version
+- **Type:** GOTCHA
+- **Severity:** WARN
+- **Raised:** 2026-07-14 by story 0019
+- **Applies to:** any story adding/relying on ArchUnit rules (0009, 0018) or bumping `maven.compiler.release` / the JDK
+- **Note:** The project compiles to Java 25 (class-file major version 69).
+  ArchUnit's bundled ASM must support that version or `ClassFileImporter`
+  silently skips every project class and rules pass **vacuously** (they use
+  `allowEmptyShould(true)`). `archunit` 1.3.0 could NOT parse v69 (false green);
+  1.4.1 can. If the compiler release or JDK is bumped later, re-verify ArchUnit
+  actually imports classes (grep the verify log for "Couldn't import class …
+  rezatron") before trusting a green run. Guard tests scope to main sources via
+  `ImportOption.Predefined.DO_NOT_INCLUDE_TESTS` (see `RandomnessConventionTest`);
+  `LoggingConventionTest` does NOT and scans test classes too, so test code must
+  avoid banned APIs like `java.io.PrintStream`.
+- **Refs:** PLAN/0019-require-rejection-logging.md §Files touched, core/src/test/resources/simplelogger.properties, core/src/test/java/org/rezatron/cardkit/core/arch/LoggingConventionTest.java
 
 <!-- Entry shape — copy verbatim, fill every field:
 ### N-001 — <one-line title>

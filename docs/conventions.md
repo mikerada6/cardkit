@@ -76,6 +76,15 @@ concept — pick one per surface and stay consistent).
   implementation** — the consumer supplies one ([nfrs.md](nfrs.md)).
 - The library stays quiet by default: internal detail at DEBUG/TRACE; no
   INFO-level output during normal operation.
+- **Log the interesting paths, stay silent on the hot happy path.** Mutable/
+  behavioural types (`Deck`, `Shoe`, `RandomSource` impls) log lifecycle events
+  at DEBUG and per-card deals at TRACE. Boundary/precondition helpers (`Require`)
+  log only on the **rejection** branch (DEBUG, naming the failed parameter)
+  before throwing — so the happy path allocates and logs nothing.
+- **Do not log in value objects or exception constructors.** Immutable value
+  types (`Card`, `Rank`, `Suit`) sit on hot construction/evaluation paths and
+  carry no logger. Domain exceptions (`core.error`) never self-log; the throwing
+  call site (or the consumer's handler) owns that, avoiding double-logging.
 
 ## Exceptions & Error Types
 
