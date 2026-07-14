@@ -1,0 +1,85 @@
+# Card Games Foundation
+
+## Problem & Goal
+Build a foundational Java domain library for card games that can be extended
+to support multiple games. The initial games are Poker (5-card draw, Texas
+Hold'em, Omaha Hi-Lo) and Blackjack. The design must generalize hand
+representation and evaluation across poker variants rather than hard-coding
+5-card logic.
+
+## Non-Goals
+- No REST API, web service, or UI (see Known Deviations — this project is
+  intended to remain a reusable library, not become a service).
+- No persistence/database in this phase.
+- No betting/pot mechanics (bet sizing, blinds, raises, side pots) in this
+  phase — bankroll is modeled as an attribute on Player. Betting/pot
+  mechanics are planned as a follow-on phase after the core foundation
+  lands.
+- No multiplayer networking.
+
+## Users & Roles
+This is a library, not a multi-tenant service, so there is no auth. The
+domain models three participant roles used by consuming code:
+- **Human player** — has a bankroll/chip stack and a hand.
+- **Dealer/house** — has its own hand and rule-bound behavior (e.g.
+  blackjack dealer must hit on 16, stand on 17).
+- **AI/bot player** — computer-controlled participant that can make
+  decisions (bet/fold/hit/stand); decision logic may be a stub in this
+  phase.
+
+## Core Capabilities
+- Model a standard deck and shuffle it.
+- Support a multi-deck "shoe" (used by blackjack and some poker variants).
+- Deal hands per game variant (5-card draw, Texas Hold'em, Omaha Hi-Lo,
+  blackjack).
+- Evaluate and rank poker hands across all supported variants, including
+  Omaha Hi-Lo's high/low split evaluation.
+- Run a blackjack round: deal, player hit/stand loop, dealer resolves by
+  fixed rules, compare hands, determine win/lose/push outcome.
+
+## Key Domain Entities
+- `Card`, `Deck`, `Shoe`
+- `PokerHand`, `HandEvaluator` (variant-aware: 5-card, Hold'em, Omaha Hi-Lo)
+- `BlackjackHand`
+- `Player` (bankroll/chip stack, hand)
+- `Dealer`
+- `AiPlayer` (or equivalent bot/decision-maker abstraction)
+- `GameSession` / `Table` (tracks participants and round state)
+
+## Primary Workflows
+1. **Deal + evaluate a poker hand** — shuffle shoe, deal hole/community
+   cards per variant, evaluate and rank hands to determine a winner
+   (including Omaha Hi-Lo high/low split).
+2. **Play a full blackjack round** — deal initial hands, player hit/stand
+   loop, dealer resolves by fixed rules, compare dealer vs. player hands,
+   settle win/lose/push outcome per player.
+
+## External Integrations
+None. Self-contained library with no third-party APIs, messaging, or
+storage dependencies.
+
+## Non-Functional Targets
+- Correctness of game rules and hand evaluation is the primary bar for this
+  phase.
+- Full unit test coverage, offline (no network/external infra), per global
+  testing standards.
+- Shuffling must use a cryptographically secure random source
+  (`java.security.SecureRandom`, not `java.util.Random`).
+- No numeric performance/scale targets yet.
+
+## Constraints & Mandates
+- Java, latest LTS version.
+- Maven build (per global multi-module convention), packaged as a reusable
+  library artifact (JAR) consumable by other projects — not a deployable
+  service.
+- No existing code base to integrate with; building from scratch.
+
+## Known Deviations from Standards
+- **No Spring Boot backend / Angular frontend / Docker Compose / Swagger UI.**
+  Global standards default every project to that stack; this project is
+  intentionally scoped as a standalone, reusable Java domain library
+  consumed by other projects, not a deployed service. There is no planned
+  transition to a Spring Boot service wrapping this library — if that
+  changes later, it would be a new consuming project rather than a
+  rearchitecture of this one. This should be raised as an ADR during
+  design.
